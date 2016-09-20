@@ -3,11 +3,20 @@ $sns.settings.keys.kakaotalk.k_app_id = "e97a6509d331164e48591e84d86b2b09";
 $sns.settings.keys.kakaotalk.k_app_name = "promocode";
 $sns.settings.blacklist.kr = ["kakaostory", "whatsapp","weibo", "qzone", "wechat"];
 
-$sns.settings.selectors.share.result = ".share";
+//$sns.settings.disableFB = true;
+$sns.site.getUrl = function(){return window.location.href;};
+$sns.site.getTitle = function(){return "Title"};
+$sns.site.getDesc = function(){return "Desc"};
+$sns.site.getImage = function(){
+	if(jQuery('body').hasClass('mkt-cn')){
+		return "http://media.ef.com.cn/~/media/efcom/oct/2014/bg.jpg";
+	}
+	return "http://media.ef.com/~/media/efcom/oct/2014/bg.jpg";
+};
 
-$sns.result.getUrl = function(){return window.location.href.split('?')[0].replace('#/', '')+"?redeemcode="+promocode;};
-$sns.result.getTitle = function(){return blurb[bs_mkt].sns.title};
-$sns.result.getDesc = function(){return blurb[bs_mkt].sns.desc};
+$sns.result.getUrl = function(){return window.location.href;};
+$sns.result.getTitle = function(){return "Title"};
+$sns.result.getDesc = function(){return "Desc"};
 $sns.result.getImage = function(){
 	if(jQuery('body').hasClass('mkt-cn')){
 		return "http://media.ef.com.cn/~/media/efcom/oct/2014/bg.jpg";

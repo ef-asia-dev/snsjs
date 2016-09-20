@@ -41,7 +41,8 @@ $sns = {
 			email: ""		
 		}		
 	}, 
-	settings:{
+	settings:{ 
+		disableFB:false,
 		keys:{
 			facebook: {appId : "0"}, 
 			kakaotalk:{k_app_id : "b1c55c1999cae48477cd951993e35c6d", k_app_name : "EF Destination"}
@@ -107,8 +108,11 @@ $sns = {
 		}
 		this.hideElement();
 		
-		if(!(jQuery('body').hasClass('mkt-cn'))){
+		if(!(jQuery('body').hasClass('mkt-cn')) && !(this.settings.disableFB) ){
+			//console.log("this.loadFbAPI()");
 			this.loadFbAPI();
+		}else{
+			//console.log("this.loadFbAPI() not loaded");
 		}
 		
 		//Fix popup block
