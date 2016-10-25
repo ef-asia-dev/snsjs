@@ -224,15 +224,27 @@ $sns = {
 			e.preventDefault();
 			_this.buildLink();
 			_this.bindLink();
+			
+			var title = "";
+			var url = "";
+			if($(this).parents(_this['settings']['selectors']['share']['site']).length >0){
+				title = _this.site.getTitle();
+				url = _this.site.getUrl();
+			}				
+			if($(this).parents(_this['settings']['selectors']['share']['result']).length >0){
+				title = _this.result.getTitle();
+				url = _this.result.getUrl();				
+			}			
+			
 			if (_this.mobilecheck()) {
 				if (navigator.userAgent.toLowerCase().indexOf("micromessenger") == -1) {
 					//browser
 					
 					} else {
 					//weixin
-					document.title = _this.result.getTitle();
+					document.title = title;
 					
-					history.pushState("", "", _this.result.getUrl());
+					history.pushState("", "", url);
 					
 					alert(decodeURI('%E8%AF%B7%E7%82%B9%E5%8F%B3%E4%B8%8A%E8%A7%92%E5%88%86%E4%BA%AB%E5%88%B0%E6%9C%8B%E5%8F%8B%E5%9C%88'));
 				}

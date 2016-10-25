@@ -5,8 +5,8 @@ $sns.settings.blacklist.kr = ["kakaostory", "whatsapp","weibo", "qzone", "wechat
 
 //$sns.settings.disableFB = true;
 $sns.site.getUrl = function(){return window.location.href;};
-$sns.site.getTitle = function(){return "Title"};
-$sns.site.getDesc = function(){return "Desc"};
+$sns.site.getTitle = function(){return "Title1"};
+$sns.site.getDesc = function(){return "Desc1"};
 $sns.site.getImage = function(){
 	if(jQuery('body').hasClass('mkt-cn')){
 		return "http://media.ef.com.cn/~/media/efcom/oct/2014/bg.jpg";
@@ -15,8 +15,8 @@ $sns.site.getImage = function(){
 };
 
 $sns.result.getUrl = function(){return window.location.href;};
-$sns.result.getTitle = function(){return "Title"};
-$sns.result.getDesc = function(){return "Desc"};
+$sns.result.getTitle = function(){return "Title2"};
+$sns.result.getDesc = function(){return "Desc2"};
 $sns.result.getImage = function(){
 	if(jQuery('body').hasClass('mkt-cn')){
 		return "http://media.ef.com.cn/~/media/efcom/oct/2014/bg.jpg";
