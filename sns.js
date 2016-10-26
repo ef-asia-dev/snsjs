@@ -1,6 +1,6 @@
 if(!jQuery){
 	alert("jQuery missing!");
-};
+}
 $sns = {
 	
 	//For sharing the site	
@@ -99,7 +99,7 @@ $sns = {
 		//singleton 
 		if(this.loaded){
 			alert('singleton');
-		return};
+		return;}
 		
 		if (this.mobilecheck()) {
 			jQuery(this.settings.selectors.device.wrapper).addClass(this.settings.selectors.device.mobile);
@@ -118,7 +118,7 @@ $sns = {
 		//Fix popup block
 		jQuery.each(this.settings.selectors.sns, function(key, value) {
 			var _this = this;
-			if(key == "email"){return;};
+			if(key == "email"){return;}
 			jQuery(value).attr('target', '_blank');
 		});	
 		
@@ -227,13 +227,16 @@ $sns = {
 			
 			var title = "";
 			var url = "";
+			var img = "";
 			if($(this).parents(_this['settings']['selectors']['share']['site']).length >0){
 				title = _this.site.getTitle();
 				url = _this.site.getUrl();
+				img = _this.site.getImage();
 			}				
 			if($(this).parents(_this['settings']['selectors']['share']['result']).length >0){
 				title = _this.result.getTitle();
-				url = _this.result.getUrl();				
+				url = _this.result.getUrl();			
+				img = _this.result.getImage();
 			}			
 			
 			if (_this.mobilecheck()) {
@@ -244,7 +247,11 @@ $sns = {
 					//weixin
 					document.title = title;
 					
-					history.pushState("", "", url);
+					if (window.history && window.history.pushState){
+						history.pushState("", "", url);
+					}
+					
+					jQuery('body').prepend('<img src="'+img+'" style="width:0px;height:0px;">');
 					
 					alert(decodeURI('%E8%AF%B7%E7%82%B9%E5%8F%B3%E4%B8%8A%E8%A7%92%E5%88%86%E4%BA%AB%E5%88%B0%E6%9C%8B%E5%8F%8B%E5%9C%88'));
 				}
