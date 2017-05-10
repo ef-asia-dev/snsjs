@@ -32,7 +32,7 @@ var util = {
 	
 };
 
-$sns = {
+var $sns = {
 	
 	//For sharing the site
 	site: {
