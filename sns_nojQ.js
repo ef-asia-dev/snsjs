@@ -139,17 +139,17 @@ $sns = {
 		if (this.mobilecheck()) {
       var wraps = document.querySelectorAll(this.settings.selectors.device.wrapper);
       for (var i = 0; i < wraps.length; i++) {
-        addClass(wraps[i], this.settings.selectors.device.mobile);
+        util.addClass(wraps[i], this.settings.selectors.device.mobile);
       }
 		} else {
       var wraps = document.querySelectorAll(this.settings.selectors.device.wrapper);
       for (var i = 0; i < wraps.length; i++) {
-        addClass(wraps[i], this.settings.selectors.device.desktop);
+        util.addClass(wraps[i], this.settings.selectors.device.desktop);
       }
 		}
 		this.hideElement();
 
-		if( ! (hasClass(util.$('body'), 'mkt-cn')) && !this.settings.disableFB ){
+		if( ! (util.hasClass(util.$('body'), 'mkt-cn')) && !this.settings.disableFB ){
 			this.loadFbAPI();
 		}else{
 		}
@@ -292,12 +292,12 @@ $sns = {
         var url = "";
         var img = "";
 
-        if( closest(this, _this['settings']['selectors']['share']['site']) ){
+        if( util.closest(this, _this['settings']['selectors']['share']['site']) ){
           title = _this.site.getTitle();
           url = _this.site.getUrl();
           img = _this.site.getImage();
         }
-        if( closest(this, _this['settings']['selectors']['share']['result']) ){
+        if( util.closest(this, _this['settings']['selectors']['share']['result']) ){
           title = _this.result.getTitle();
           url = _this.result.getUrl();
           img = _this.result.getImage();
