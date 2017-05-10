@@ -1,45 +1,49 @@
-var $ = function(el) {
-  return document.querySelector(el);
-}
-
-function hasClass(el, className) {
-  return el.classList ? el.classList.contains(className) : new RegExp(`(^| )${className}( |$)`, 'gi').test(el.className);
-};
-
-function addClass(el, className) {
-  if (el.classList) {
-    el.classList.add(className);
-  } else {
-    el.className += ` ${className}`;
-  }
-};
-
-function removeClass(el, className) {
-  if (el.classList) {
-    el.classList.remove(className);
-  } else {
-    el.className = el.className.replace(new RegExp(`(^|\\b)${className.split(' ').join('|')}(\\b|$)`, 'gi'), ' ');
-  }
-};
-
-function closest(el, clazz) {
-    while ('.'+el.className != clazz) {
-        el = el.parentNode;
-        if (!el) {
-            return false;
-        }
+var util = {
+  return {
+    var $ = function(el) {
+      return document.querySelector(el);
     }
-    return el;
-}
+
+    function hasClass(el, className) {
+      return el.classList ? el.classList.contains(className) : new RegExp(`(^| )${className}( |$)`, 'gi').test(el.className);
+    };
+
+    function addClass(el, className) {
+      if (el.classList) {
+        el.classList.add(className);
+      } else {
+        el.className += ' ' +className;
+      }
+    };
+
+    function removeClass(el, className) {
+      if (el.classList) {
+        el.classList.remove(className);
+      } else {
+        el.className = el.className.replace(new RegExp(`(^|\\b)${className.split(' ').join('|')}(\\b|$)`, 'gi'), ' ');
+      }
+    };
+
+    function closest(el, clazz) {
+        while ('.'+el.className != clazz) {
+            el = el.parentNode;
+            if (!el) {
+                return false;
+            }
+        }
+        return el;
+    }
+  }
+};
 
 $sns = {
 
 	//For sharing the site
 	site: {
 		getUrl: function(){return window.location.href.split('?')[0];},
-		getTitle: function(){return $('title:last').innerHTML;},
-		getDesc: function(){return $('meta[property="og:description"]').getAttribute('content');},
-		getImage: function(){return $('meta[property="og:image"]').getAttribute('content');},
+		getTitle: function(){return util.$('title:last').innerHTML;},
+		getDesc: function(){return util.$('meta[property="og:description"]').getAttribute('content');},
+		getImage: function(){return util.$('meta[property="og:image"]').getAttribute('content');},
 		links:{
 			whatsapp: "",
 			facebook: "",
@@ -145,7 +149,7 @@ $sns = {
 		}
 		this.hideElement();
 
-		if( ! (hasClass($('body'), 'mkt-cn')) && !this.settings.disableFB ){
+		if( ! (hasClass(util.$('body'), 'mkt-cn')) && !this.settings.disableFB ){
 			this.loadFbAPI();
 		}else{
 		}
@@ -224,7 +228,7 @@ $sns = {
     for (var key in obj) {
       if (obj.hasOwnProperty(key)) {
         var sel =  _this['settings']['selectors']['share']['site'] +" "+_this['settings']['selectors']['sns'][key];
-  			$(sel).href = _this['site']['links'][key];
+  			util.$(sel).href = _this['site']['links'][key];
       }
     }
 
@@ -232,7 +236,7 @@ $sns = {
     for (var key in obj) {
       if (obj.hasOwnProperty(key)) {
   			var sel =  _this['settings']['selectors']['share']['result'] +" "+_this['settings']['selectors']['sns'][key];
-  			$(sel).href = _this['result']['links'][key];
+  			util.$(sel).href = _this['result']['links'][key];
       }
     }
 
@@ -249,7 +253,7 @@ $sns = {
           var elem = document.querySelectorAll(obj[key]);
           for (var i = 0; i < elem.length; i++) {
             elem[i].addEventListener('click', function(e) {
-              if (e.target != $('.share-result .icon-ef-facebook')) {
+              if (e.target != util.$('.share-result .icon-ef-facebook')) {
                 e.preventDefault();
                 _this.buildLink();
                 _this.bindLink();
@@ -263,7 +267,7 @@ $sns = {
     }
 
 		//----
-		$(_this['settings']['selectors']['share']['result'] +" "+_this['settings']['selectors']['sns']['facebook']).addEventListener('click', function (e) {
+		util.$(_this['settings']['selectors']['share']['result'] +" "+_this['settings']['selectors']['sns']['facebook']).addEventListener('click', function (e) {
 			e.preventDefault();
 			FB.ui({
 				method: 'feed',
@@ -315,7 +319,7 @@ $sns = {
             _img.src = _this.result.getImage();
             _img.style.width = "0px";
             _img.style.height = "0px";
-            $('body').insertBefore(_img, $('body').firstChild);
+            util.$('body').insertBefore(_img, util.$('body').firstChild);
 
             alert(decodeURI('%E8%AF%B7%E7%82%B9%E5%8F%B3%E4%B8%8A%E8%A7%92%E5%88%86%E4%BA%AB%E5%88%B0%E6%9C%8B%E5%8F%8B%E5%9C%88'));
           }
@@ -357,7 +361,7 @@ $sns = {
       _img.src = _this.result.getImage();
       _img.style.width = "0px";
       _img.style.height = "0px";
-      $('body.mkt-cn').insertBefore(_img, $('body.mkt-cn').firstChild);
+      util.$('body.mkt-cn').insertBefore(_img, util.$('body.mkt-cn').firstChild);
 
       var obj = this.settings.selectors.sns;
       for (var key in obj) {
@@ -423,10 +427,10 @@ $sns = {
 		return navigator.userAgent.toLowerCase().indexOf("micromessenger") !== -1;
 	},
 	getMarket : function(){
-		if( typeof $('body').getAttribute('class') == "undefined"){
+		if( typeof util.$('body').getAttribute('class') == "undefined"){
 			return "we";
 		}else{
-			var str = $('body').getAttribute('class');
+			var str = util.$('body').getAttribute('class');
 			var re = /mkt-(..)/;
 			var found = str.match(re);
 			return found[1];
@@ -435,7 +439,7 @@ $sns = {
 	loadFbAPI : function(){
     var fbrt = document.createElement("div");
     fbrt.setAttribute("id", "fb-root");
-		$('body').appendChild(fbrt);
+		util.$('body').appendChild(fbrt);
 		var _this = this;
 		window.fbAsyncInit = function() {
 			FB.init({
