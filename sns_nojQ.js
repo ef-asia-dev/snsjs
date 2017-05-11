@@ -37,7 +37,10 @@ var $sns = {
 	//For sharing the site
 	site: {
 		getUrl: function(){return window.location.href.split('?')[0];},
-		getTitle: function(){return util.$('title:last').innerHTML;},
+		getTitle: function(){
+			var titleList = document.querySelectorAll('title');
+			return titleList[titleList.length-1].innerHTML;
+		},
 		getDesc: function(){return util.$('meta[property="og:description"]').getAttribute('content');},
 		getImage: function(){return util.$('meta[property="og:image"]').getAttribute('content');},
 		links:{
