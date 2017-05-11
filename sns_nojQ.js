@@ -224,7 +224,10 @@ var $sns = {
 		for (var key in obj) {
 			if (obj.hasOwnProperty(key)) {
 				var sel =  _this['settings']['selectors']['share']['site'] +" "+_this['settings']['selectors']['sns'][key];
-				util.$(sel).href = _this['site']['links'][key];
+				if( util.$(sel)!== null){
+					util.$(sel).href = _this['site']['links'][key];	
+				}
+				
 			}
 		}
 		
@@ -232,7 +235,9 @@ var $sns = {
 		for (var key in obj) {
 			if (obj.hasOwnProperty(key)) {
 				var sel =  _this['settings']['selectors']['share']['result'] +" "+_this['settings']['selectors']['sns'][key];
-				util.$(sel).href = _this['result']['links'][key];
+				if( util.$(sel)!== null){
+					util.$(sel).href = _this['result']['links'][key];
+				}
 			}
 		}
 		
