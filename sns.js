@@ -219,6 +219,12 @@ $sns = {
 			}, function(response){});
 			
 		});
+		
+		//----
+		jQuery(document).on('click', _this['settings']['selectors']['sns']['email'], function (e) {
+				_this.buildLink();
+				_this.bindLink();			
+		});		
 		//----
 		jQuery(document).on('click', _this['settings']['selectors']['sns']['wechat'], function (e) {
 			e.preventDefault();

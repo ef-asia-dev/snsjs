@@ -269,21 +269,24 @@ var $sns = {
 				}
 			}
 		}
+		//----		
+		var _resultFB = document.querySelectorAll(_this['settings']['selectors']['share']['result'] +" "+_this['settings']['selectors']['sns']['facebook']);
+		for (var i = 0; i < _resultFB.length; i++) {
+			_resultFB[i].addEventListener('click', function (e) {
+				e.preventDefault();
+				FB.ui({
+					method: 'feed',
+					name : _this.result.getTitle(),
+					link: _this.result.getUrl(),
+					picture: _this.result.getImage(),
+					description: _this.result.getDesc(),
+					caption: 'ef.com',
+				}, function(response){});
+				
+			}, false);
+		}		
+		//----
 		
-		//----
-		util.$(_this['settings']['selectors']['share']['result'] +" "+_this['settings']['selectors']['sns']['facebook']).addEventListener('click', function (e) {
-			e.preventDefault();
-			FB.ui({
-				method: 'feed',
-				name : _this.result.getTitle(),
-				link: _this.result.getUrl(),
-				picture: _this.result.getImage(),
-				description: _this.result.getDesc(),
-				caption: 'ef.com',
-			}, function(response){});
-			
-		}, false);
-		//----
 		var _wechat = document.querySelectorAll(_this['settings']['selectors']['sns']['wechat']);
 		for (var i = 0; i < _wechat.length; i++) {
 			
