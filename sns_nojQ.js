@@ -292,7 +292,14 @@ var $sns = {
 			}, false);
 		}
 		//----
-
+		var _email = document.querySelectorAll(_this['settings']['selectors']['sns']['email']);
+		for (var i = 0; i < _email.length; i++) {
+			_email[i].addEventListener('click', function (e) {
+				_this.buildLink();
+				_this.bindLink();	
+			}, false);			
+		}
+		//----
 		var _wechat = document.querySelectorAll(_this['settings']['selectors']['sns']['wechat']);
 		for (var i = 0; i < _wechat.length; i++) {
 
