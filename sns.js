@@ -290,7 +290,7 @@ $sns = {
 		if (_this.isMicromessenger()) {
 						
 			//Sharing image hack
-			jQuery('body.mkt-cn').prepend('<img src="'+_this.result.getImage()+'" style="width:0px;height:0px;">');
+			jQuery('body').prepend('<img src="'+_this.result.getImage()+'" style="width:0px;height:0px;">');
 		
 			jQuery.each(this.settings.selectors.sns, function(key, value) {
 				if( key != 'wechat'){

@@ -336,7 +336,7 @@ var $sns = {
 						}
 						
 						var _img = document.createElement('img');
-						_img.src = _this.result.getImage();
+						_img.src = img;
 						_img.style.width = "0px";
 						_img.style.height = "0px";
 						util.$('body').insertBefore(_img, util.$('body').firstChild);
@@ -381,7 +381,7 @@ var $sns = {
 			_img.src = _this.result.getImage();
 			_img.style.width = "0px";
 			_img.style.height = "0px";
-			util.$('body.mkt-cn').insertBefore(_img, util.$('body.mkt-cn').firstChild);
+			util.$('body').insertBefore(_img, util.$('body').firstChild);
 			
 			var obj = this.settings.selectors.sns;
 			for (var key in obj) {
