@@ -263,7 +263,7 @@ var $sns = {
 					var elem = document.querySelectorAll(obj[key]);
 					for (var i = 0; i < elem.length; i++) {
 						elem[i].addEventListener('click', function(e) {
-							if (!(e.target.className == 'icon-ef-facebook' && util.closest(e.target, '.share-result'))) {
+							if (!(e.target.className.indexOf(_this['settings']['selectors']['sns']['facebook'].replace('.', '')) != -1 && util.closest(e.target, _this['settings']['selectors']['share']['result']))) {
 								e.preventDefault();
 								_this.buildLink();
 								_this.bindLink();
