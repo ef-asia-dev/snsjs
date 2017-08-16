@@ -280,14 +280,19 @@ var $sns = {
 		for (var i = 0; i < _resultFB.length; i++) {
 			_resultFB[i].addEventListener('click', function (e) {
 				e.preventDefault();
-				FB.ui({
-					method: 'feed',
-					name : _this.result.getTitle(),
-					link: _this.result.getUrl(),
-					picture: _this.result.getImage(),
-					description: _this.result.getDesc(),
-					caption: 'ef.com',
-				}, function(response){});
+                FB.ui({
+                    method: 'share_open_graph',
+                    action_type: 'og.shares',
+                    action_properties: JSON.stringify({
+                        object: {
+                            'og:url': _this.result.getUrl(),
+                            'og:title': _this.result.getTitle(),
+                            'og:description': _this.result.getDesc(),
+                            'og:image': _this.result.getImage()
+                        }
+                    })
+                },
+                function (response) {});
 				
 			}, false);
 		}
